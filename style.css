@@ -1,0 +1,22 @@
+/* Custom styles for the toast notification */
+.toastify {
+    font-family: Arial, sans-serif;
+    position: fixed;
+    top: 20px; /* Adjust top position as needed */
+    right: 20px; /* Adjust right position as needed */
+    background-color: #333; /* Background color */
+    color: #fff; /* Text color */
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Box shadow for a nice effect */
+}
+
+/* Style for the close button */
+.toastify-close {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: #fff;
+}
