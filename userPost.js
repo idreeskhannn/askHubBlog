@@ -129,8 +129,14 @@ getDoc(postRef).then((doc) => {
                         </div>
                         <div class="w-[50%] h-[80px]">
                             <p class="text-lg">${reply.displayName}</p>
-                            <p class="mt-1 text-xs">${timeDiff !== null ? (timeDiff === 0 ? 'Just now' : timeDiff + ' min ago') : ''}</p>
-                        </div>
+                            <p class="mt-1 text-xs">${timeDiff !== null ? 
+                                (timeDiff === 0 ? 'Just now' : 
+                                timeDiff < 60 ? timeDiff + ' min' : 
+                                timeDiff < 1440 ? Math.floor(timeDiff / 60) + ' hour' : 
+                                timeDiff < 525600 ? Math.floor(timeDiff / 1440) + ' day' : 
+                                Math.floor(timeDiff / 525600) + ' year') + 
+                                (timeDiff >= 1440 && timeDiff < 525600 ? (timeDiff < 2880 ? '' : '') : '') : ''}
+                            </p>                        </div>
                     </div>
                     <div class="w-[70%] mt-2 pl-5">
                         <p class="mt-3">${reply.userReply}</p>

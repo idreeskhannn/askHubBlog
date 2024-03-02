@@ -30,6 +30,8 @@ const provider1 = new FacebookAuthProvider();
 
 const  login = document.getElementById("login")
 const facebook= document.getElementById("facebook")
+const signIN= document.getElementById("signIN")
+
 
 const loginUser = async () => {
   const email = document.getElementById("email").value;
@@ -83,28 +85,39 @@ let signInWithGoogle = () => {
   
   }
   const withFacebook=()=>{
-    // console.log("okk")
-    const auth = getAuth();
-    signInWithPopup(auth, provider1)
-      .then((result) => {
-        const user = result.user;
+   
+signInWithPopup(auth, provider1)
+  .then((result) => {
+    // The signed-in user info.
+    const user = result.user;
+
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    const credential = FacebookAuthProvider.credentialFromResult(result);
+    const accessToken = credential.accessToken;
+window.location.href="index.html"
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = FacebookAuthProvider.credentialFromError(error);
     
-        const credential = FacebookAuthProvider.credentialFromResult(result);
-        const accessToken = credential.accessToken;
-        console.log("Access Token:", accessToken);
-        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
-        window.location.href = "index.html"
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.customData.email;
-        const credential = FacebookAuthProvider.credentialFromError(error);
-    
-      });
+
+    // ...
+  });
+
+
 
   }
 
+const signINDirect=()=>{
+  window.location.href="signUp."
+}
+
+  signIN && signIN.addEventListener("click" ,signINDirect)
   facebook && facebook.addEventListener("click" ,withFacebook)
   login && login.addEventListener("click", loginUser)
   withGoogle && withGoogle.addEventListener("click", signInWithGoogle)
