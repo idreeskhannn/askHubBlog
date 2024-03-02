@@ -131,12 +131,15 @@ getDoc(postRef).then((doc) => {
                             <p class="text-lg">${reply.displayName}</p>
                             <p class="mt-1 text-xs">${timeDiff !== null ? 
                                 (timeDiff === 0 ? 'Just now' : 
-                                timeDiff < 60 ? timeDiff + ' min' : 
-                                timeDiff < 1440 ? Math.floor(timeDiff / 60) + ' hour' : 
-                                timeDiff < 525600 ? Math.floor(timeDiff / 1440) + ' day' : 
-                                Math.floor(timeDiff / 525600) + ' year') + 
-                                (timeDiff >= 1440 && timeDiff < 525600 ? (timeDiff < 2880 ? '' : '') : '') : ''}
-                            </p>                        </div>
+                                timeDiff < 60 ? timeDiff + ' min ago' : 
+                                timeDiff < 60 * 24 ? Math.floor(timeDiff / 60) + ' hour' : 
+                                timeDiff < 60 * 24 * 30 ? Math.floor(timeDiff / (60 * 24)) + ' day' : 
+                                timeDiff < 60 * 24 * 365 ? Math.floor(timeDiff / (60 * 24 * 30)) + ' month' : 
+                                Math.floor(timeDiff / (60 * 24 * 365)) + ' year') + 
+                                (timeDiff >= 60 && timeDiff < 60 * 24 ? (timeDiff < 120 ? '' : '') : 
+                                timeDiff >= 60 * 24 && timeDiff < 60 * 24 * 30 ? (timeDiff < 60 * 48 ? '' : '') : 
+                                timeDiff >= 60 * 24 * 30 && timeDiff < 60 * 24 * 365 ? (timeDiff < 60 * 24 * 60 ? '' : '') : '') : ''}
+                            </p>                    </div>
                     </div>
                     <div class="w-[70%] mt-2 pl-5">
                         <p class="mt-3">${reply.userReply}</p>

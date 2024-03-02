@@ -89,9 +89,12 @@ const searchPosts = async (searchQuery) => {
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
         let list = "";
+        let foundMatch = false; // Flag to track if any match is found
         querySnapshot.forEach((doc) => {
             const val = doc.data();
-            if (val.blogInp.toLowerCase().includes(searchQuery.toLowerCase()) || val.txtArea.toLowerCase().includes(searchQuery.toLowerCase()) || val.userName.toLowerCase().includes(searchQuery.toLowerCase())) {
+            if (val.blogInp.toLowerCase().split(' ').some(word => word.includes(searchQuery.toLowerCase())) || 
+                val.txtArea.toLowerCase().split(' ').some(word => word.includes(searchQuery.toLowerCase()))) {
+                // Add the post to the list
                 list += `
                     <div class="w-8/12 h-[200px] border mt-10 flex items-center justify-around border-orange-200 rounded-lg">
                         <div class=" w-[78%] h-[180px] ">
@@ -115,27 +118,28 @@ const searchPosts = async (searchQuery) => {
                         </div>
                     </div>
                 `;
-            }
-            else {
-                list = `
-               
-               
-         <div class="w-8/12 h-[200px] mt-10 flex items-center justify-around ">
-               <div class=" w-[78%] h-[180px] ">
-                   <div class=" w-full h-[40px] text-2xl bg-slate-50 rounded-lg flex justify-between p-1">
-                       <h3 id="titleTxt" class="text-[red]">Not Found</h3>
-                       <h5 id="titleTxt" class="text-amber-600	text-lg"></h5>
-                   </div>
-                   
-               </div>
-               
-            </div>
-               
-               
-               `
+                foundMatch = true; // Set flag to true since a match is found
             }
         });
-        addPost.innerHTML = list;
+
+        // Check if any match is found
+        if (foundMatch) {
+            // If match is found, display the list
+            addPost.innerHTML = list;
+        } else {
+            // If no match is found, display "Not Found"
+            list = `
+                <div class="w-8/12 h-[200px] mt-10 flex items-center justify-around ">
+                    <div class=" w-[78%] h-[180px] ">
+                        <div class=" w-full h-[40px] text-2xl bg-slate-50 rounded-lg flex justify-between p-1">
+                            <h3 id="titleTxt" class="text-[red]">Not Found</h3>
+                            <h5 id="titleTxt" class="text-amber-600	text-lg"></h5>
+                        </div>
+                    </div>
+                </div>
+            `;
+            addPost.innerHTML = list;
+        }
     });
 };
 
@@ -148,6 +152,7 @@ searchInp && searchInp.addEventListener('input', (e) => {
         print();
     }
 });
+
 
 
 
