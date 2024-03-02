@@ -49,28 +49,28 @@ const print = async () => {
         querySnapshot.forEach((doc) => {
             const val = doc.data();
             list += `
-        <div class="w-8/12 border mt-10 flex items-center justify-around border-orange-200 rounded-lg p-3">
-        <div class=" w-[78%]">
-            <div class=" w-full h text-2xl bg-slate-50 rounded-lg flex justify-between p-1">
+        <div class="md:w-[70%] md:flex md:flex-row  w-[95%] border mt-5 flex flex-col items-center justify-around border-orange-200 rounded-lg p-3">
+        <div class=" w-[96%] md:w-[78%] ">
+            <div class=" w-full text-2xl bg-slate-50 rounded-lg flex justify-between p-1">
                 <h3 id="titleTxt">${val.blogInp}</h3>
                 <h5 id="titleTxt" class="text-amber-600	text-lg">${val.checkedRadio}</h5>
                 
             </div>
-            <div class=" my-1 w-[90%]">
+            <div class=" my-1 w-full md:[90%]">
                 <p id="descTxt" class=" w-[100%] p-2 overflow-auto ">${val.txtArea}</p>
                 ${auth.currentUser ? `<a href="userPost.html?id=${doc.id}" id="move">See more</a>` : `<a href="signIn.html" id="move">See more</a>`}
 
                 
             </div>
-            <div class=" flex justify-between">
+            <div class=" flex justify-between w-full">
                 <div class="flex items-center p-1  justify-center bg-slate-50 rounded-xl"><i class="fa-solid fa-user mr-3"></i> <p>${val.userName}</p></div>
-                <div class=" w-[20%] flex items-center justify-center bg-slate-50 rounded-xl"><p>${val.postDate}</p></div>
+                <div class=" p-1 flex items-center justify-center bg-slate-50 rounded-xl"><p>${val.postDate}</p></div>
             </div>
         </div>
-        <div class=" w-[18%]  flex items-center">
-            <h1 class="border w-[190%] rounded-lg">
+        <div class=" w-[96%] md:w-[18%] mt-2 flex items-center">
+           
                 <img src=${val.downloadURL} class="w-[100%] h-[170px] rounded-lg" alt="">
-            </h1>
+            
         </div>
     </div>
         `;
@@ -96,27 +96,30 @@ const searchPosts = async (searchQuery) => {
                 val.txtArea.toLowerCase().split(' ').some(word => word.includes(searchQuery.toLowerCase()))) {
                 // Add the post to the list
                 list += `
-                    <div class="w-8/12 h-[200px] border mt-10 flex items-center justify-around border-orange-200 rounded-lg">
-                        <div class=" w-[78%] h-[180px] ">
-                            <div class=" w-full h-[40px] text-2xl bg-slate-50 rounded-lg flex justify-between p-1">
-                                <h3 id="titleTxt">${val.blogInp}</h3>
-                                <h5 id="titleTxt" class="text-amber-600	text-lg">${val.checkedRadio}</h5>
-                            </div>
-                            <div class=" h-[100px] my-1 w-[90%]">
-                                <p id="descTxt" class=" w-[100%] p-2 overflow-auto ">${val.txtArea}</p>
-                                ${auth.currentUser ? `<a href="userPost.html?id=${doc.id}" id="move">See more</a>` : `<a href="signIn.html" id="move">See more</a>`}
-                            </div>
-                            <div class=" flex justify-between">
-                                <div class="flex items-center p-1 h-[30px] justify-center bg-slate-50 rounded-xl"><i class="fa-solid fa-user mr-3"></i> <p>${val.userName}</p></div>
-                                <div class=" w-[20%] flex items-center justify-center bg-slate-50 rounded-xl"><p>${val.postDate}</p></div>
-                            </div>
-                        </div>
-                        <div class=" w-[18%] h-[180px] flex items-center">
-                            <h1 class="border w-[190%] h-[170px] rounded-lg">
-                                <img src=${val.downloadURL} class="w-[100%] h-[170px] rounded-lg" alt="">
-                            </h1>
-                        </div>
+                <div class="md:w-[70%] md:flex md:flex-row  w-[95%] border mt-5 flex flex-col items-center justify-around border-orange-200 rounded-lg p-3">
+                <div class=" w-[96%] md:w-[78%] ">
+                    <div class=" w-full text-2xl bg-slate-50 rounded-lg flex justify-between p-1">
+                        <h3 id="titleTxt">${val.blogInp}</h3>
+                        <h5 id="titleTxt" class="text-amber-600	text-lg">${val.checkedRadio}</h5>
+                        
                     </div>
+                    <div class=" my-1 w-full md:[90%]">
+                        <p id="descTxt" class=" w-[100%] p-2 overflow-auto ">${val.txtArea}</p>
+                        ${auth.currentUser ? `<a href="userPost.html?id=${doc.id}" id="move">See more</a>` : `<a href="signIn.html" id="move">See more</a>`}
+        
+                        
+                    </div>
+                    <div class=" flex justify-between w-full">
+                        <div class="flex items-center p-1  justify-center bg-slate-50 rounded-xl"><i class="fa-solid fa-user mr-3"></i> <p>${val.userName}</p></div>
+                        <div class=" p-1 flex items-center justify-center bg-slate-50 rounded-xl"><p>${val.postDate}</p></div>
+                    </div>
+                </div>
+                <div class=" w-[96%] md:w-[18%] mt-2 flex items-center">
+                   
+                        <img src=${val.downloadURL} class="w-[100%] h-[170px] rounded-lg" alt="">
+                    
+                </div>
+            </div>
                 `;
                 foundMatch = true; // Set flag to true since a match is found
             }

@@ -141,9 +141,9 @@ const adBlog = async () => {
         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
         console.log("Download URL:", downloadURL);
         const timestamp = new Date().getTime();
-       const postDate = new Date().toString().slice(4, 15);
-        
-        
+        const postDate = new Date().toString().slice(4, 15);
+
+
 
         const payload = {
           userName: user.displayName,
@@ -242,19 +242,19 @@ load();
 const logOutBtn = () => {
   // console.log("okkkkk")
   signOut(auth)
-      .then(() => {
-          console.log("User signed out");
-          window.location.reload();
-          alert("user logOut")
-          
-      })
-      .catch((error) => {
-          console.error("Sign out error:", error);
-      });
+    .then(() => {
+      console.log("User signed out");
+      window.location.reload();
+      alert("user logOut")
+
+    })
+    .catch((error) => {
+      console.error("Sign out error:", error);
+    });
 
 }
-const homeRed=()=>{
-  window.location.href="index.html"
+const homeRed = () => {
+  window.location.href = "index.html"
   console.log("pk")
 }
 home && home.addEventListener("click", homeRed)

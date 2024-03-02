@@ -113,7 +113,7 @@ let signInWithGoogle = () => {
 
 
 const signINDirect=()=>{
-  window.location.href="signUp."
+  window.location.href="signUp.html"
 }
 
   signIN && signIN.addEventListener("click" ,signINDirect)

@@ -8,24 +8,24 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.1/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/52df060ac8.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.2/toastify.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.2/toastify.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.2/toastify.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.2/toastify.min.js"></script>
 
 
 </head>
 
-<body class="bg-zinc-100">
-    <div class="w-screen h-20 flex items-center bg-blue-50	">
-        <div class="w-11/12 mx-auto my-auton h-16  flex items-center justify-between">
-            <div class="w-28 h-14 rounded-s-full flex items-center justify-center bg-orange-100 shadow drop-shadow-lg" id="home">
+<body>
+    <div class="w-[100%] h-16 flex items-center bg-blue-50">
+        <div class=" w-[95%] mx-auto my-auton h-12 sm:h-14  flex items-center justify-between">
+            <div
+                class="w-[15%] h-10 text-[8%] md:text-[100%] md:h-12 md:w-[8%] rounded-s-full flex items-center justify-center bg-orange-100 shadow drop-shadow-lg">
                 <span>AskHubBlogs</span>
             </div>
-            <div>
 
-            </div>
-            <div class=" w-1/4 flex justify-around">
+            <div class="h-10 w-[35%] md:text-[90%] md:h-12 md:w-[20%] flex justify-around items-center">
 
-                <button class="border w-1/3 h-12 rounded-xl border-orange-300 bg-gray-100 shadow drop-shadow-lg" id="logOut">
+                <button id="logOut"
+                    class="border w-[30%] text-[8%] h-8 md:w-[35%] md:h-12 md:text-[100%] rounded-xl border-orange-300 bg-gray-100 shadow drop-shadow-lg">
                     LogOut
                 </button>
             </div>
@@ -34,34 +34,35 @@
     </div>
 
 
-    <div class=" w-screen h-screen flex flex-col items-center">
+    <div class=" w-[100%] flex flex-col items-center">
         <p
-            class="border w-[75%] mt-10 text-xl py-2 pl-3 rounded-tr-lg rounded-tl-lg bg-blue-100 border-blue-100 shadow drop-shadow-lg">
+            class="border w-[90%] mt-10 text-xl py-2 pl-3 rounded-tr-lg rounded-tl-lg bg-blue-100 border-blue-100 shadow drop-shadow-lg">
             Create Blogs Or Ask Question</p>
-        <div
-            class="border w-[75%] h-[95%] rounded-lg rounded-tr-none rounded-tl-none border-blue-100 shadow drop-shadow-lg">
+        <div class="border w-[90%] rounded-lg rounded-tr-none rounded-tl-none border-blue-100 shadow drop-shadow-lg">
             <div class=" w-[98%] h-[47%] mx-auto mt-5 flex">
                 <div class=" w-[50%] h-[100%]">
                     <div class=" h-[40%] w-full">
-                        <p class="ml-4 mt-5">
+                        <p class="ml-4 mt-5 md:ml-1" >
                             Title
                         </p>
                         <input type="text" name="" id="blogInp"
-                            class="border ml-4 mt-1 w-[70%] h-[40px] rounded-lg border-orange-300 outline-none p-2 shadow drop-shadow-lg">
+                            class="border ml-4 md:ml-1 mt-1 w-[70%] h-[40px] rounded-lg border-orange-300 outline-none p-2 shadow drop-shadow-lg">
                     </div>
-                    <div class=" h-[50%] w-full mt-5 ">
+                    <div class=" h-[50%] w-[95%] text-sm  mt-5 ">
                         <p class="ml-4 mt-5">Select Type </p>
-                        <div class=" flex ml-4 mt-3 w-[60%] justify-between ">
+                        <div class=" mt-3 w-[60%] justify-between  ">
                             <div class="form-control w-32">
                                 <label class="label cursor-pointer">
-                                    <input type="radio" name="radio-10" value="Blog"  class="radio shadow drop-shadow-lg"/>
-                                    <span class="label-text mr-12">Blog</span>
+                                    <input type="radio" name="radio-10" value="Blog"
+                                        class="radio shadow drop-shadow-lg" />
+                                    <span class="label-text text-sm mr-10">Blog</span>
                                 </label>
                             </div>
-                            <div class="form-control w-32">
-                                <label class="label cursor-pointer">
-                                    <input type="radio" name="radio-10" value="Question" class="radio shadow drop-shadow-lg" />
-                                    <span class="label-text mr-6">Question</span>
+                            <div class="form-control w-32 text-sm">
+                                <label class="label cursor-pointer ">
+                                    <input type="radio" name="radio-10" value="Question"
+                                        class="radio shadow drop-shadow-lg text-sm" />
+                                    <span class="label-text text-sm mr-4">Question</span>
                                 </label>
                             </div>
                         </div>
@@ -72,12 +73,12 @@
                 <div class=" w-[50%] h-[100%]">
                     <div class=" w-[-45%] h-[50%] ">
 
-                        <div class=" w-[70%] mx-auto mt-4">
+                        <div class=" w-[80%] mx-auto mt-5">
                             <p>
                                 Select Category
                             </p>
-                            <select id="selectInp" 
-                                class="border w-[80%] mt-1 h-10 rounded-lg border-orange-300 outline-none shadow drop-shadow-lg">
+                            <select id="selectInp"
+                                class="border w-[80%] mt-1 h-10 text-[10px] rounded-lg border-orange-300 outline-none shadow drop-shadow-lg">
                                 <option disabled selected>Select Category</option>
                                 <option value="javaScript">javaScript</option>
                                 <option value="Python">Python</option>
@@ -85,20 +86,21 @@
                             </select>
                         </div>
                     </div>
-                    <div class=" h-[40%] w-full mt-1 ">
-                        <div class=" w-[75%] mx-auto">
-                            <p class="ml-4 mb-3">Select Status </p>
-                            <div class=" flex ml-4 mt-1 w-[60%] justify-between ">
+                    <div class=" h-[40%] w-full mt-5  md:pl-16 ">
+                        <div class=" w-[75%] mt-1">
+                            <p class="mt-4">Select Status </p>
+                            <div class=" mt-3 w-[60%] justify-between ">
                                 <div class="form-control w-32">
                                     <label class="label cursor-pointer">
-                                        <input type="radio" name="radio-1" value="Active" class="radio shadow drop-shadow-lg "
-                                        />
+                                        <input type="radio" name="radio-1" value="Active"
+                                            class="radio shadow drop-shadow-lg " />
                                         <span class="label-text mr-8">Active</span>
                                     </label>
                                 </div>
                                 <div class="form-control w-32  ">
                                     <label class="label cursor-pointer">
-                                        <input type="radio" name="radio-1" value="In Active" class="radio shadow drop-shadow-lg" />
+                                        <input type="radio" name="radio-1" value="In Active"
+                                            class="radio shadow drop-shadow-lg" />
                                         <span class="label-text mr-4">In Active</span>
                                     </label>
                                 </div>
@@ -111,16 +113,18 @@
 
                 </div>
             </div>
-            <div class=" w-[98%] h-[47%] mx-auto">
+            <div class=" w-[100%] h-[47%] mt-3 mx-auto">
                 <p class="mb-2 text-xl ml-5"> Description</p>
-                <div class="border h-[60%] w-[70%] rounded-lg border-orange-300 shadow drop-shadow-lg ml-5">
-                    <textarea id="txtArea" class="outline-none w-full h-full text-center pt-16 border-orange-300 rounded-lg "
+                <div class=" w-[90%] rounded-lg border-orange-300">
+                    <textarea id="txtArea"
+                        class="outline-none w-full md:w-[50%] md:ml-2 p-1 rounded-lg border border-orange-300"
                         placeholder="Quill Or Rich Text Editor"></textarea>
-                        
-                    </div>
-                    <div class=" w-[60%] mt-5 flex justify-around">
-                    <input type="file" class=" h-10"  id="img"/>
-                    <button id="addBlog" class="border w-[20%] h-10 rounded-xl border-orange-300 bg-gray-100 shadow drop-shadow-lg">
+
+                </div>
+                <div class=" w-[90%] md:w-[50%] mt-5 flex justify-between mb-5">
+                    <input type="file" class=" h-10 w-[50%] md:ml-2" id="img" />
+                    <button id="addBlog"
+                        class="border w-[20%] h-10 rounded-xl border-orange-300 bg-gray-100 shadow drop-shadow-lg">
                         save
                     </button>
                     <button class="border w-[20%] h-10 rounded-xl border-orange-300 bg-gray-100 shadow drop-shadow-lg">

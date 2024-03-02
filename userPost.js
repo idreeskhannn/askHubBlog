@@ -60,9 +60,9 @@ getDoc(postRef).then((doc) => {
         
     
           
-        <div class=" w-[90%] mx-auto">
-        <h1 class=" my-5  text-2xl">${postData.checkedRadio} </h1>
-        <h2 class="text-4xl p-3">
+        <div class=" w-[90%] mx-auto mt-5">
+        <span class=" p-2  text-2xl bg-orange-100 rounded-xl">${postData.checkedRadio} </span>
+        <h2 class="text-2xl p-2 bg-slate-50 rounded-xl mt-4">
             ${postData.blogInp}
         </h2>
     </div>
@@ -72,7 +72,7 @@ getDoc(postRef).then((doc) => {
         </p>
     </div>
     <div class=" w-[90%] mx-auto mt-4">
-        <p class="p-3">${postData.checkedRadio} about : ${postData.selectInp}</p>
+        <p class="p-3 ">${postData.checkedRadio} about : ${postData.selectInp}</p>
         <img src=${postData.downloadURL}
             class="w-[100%] h-[400px] border rounded-lg" alt="">
         <p class="flex justify-between p-2">
@@ -85,116 +85,116 @@ getDoc(postRef).then((doc) => {
         </p>
 
     </div>
-    <div class=" w-[90%] mx-auto mt-5 p-2 ">
-    <p class=" w-[40%] justify-around flex">
+    <div class=" w-[90%] mx-auto mt-5 p-2  ">
+    <p class=" w-[70%] md:w-[40%] justify-between flex flex-col	">
         <label class=" " for="forInput">
             ADD your Thought
         </label>
-        <label class="" for="forInput">
+        <label class="mt-2" for="forInput">
             Reply
         </label>
     </p>
 
     <input type="text" name="forInput" id="forInput"
-        class="border w-[70%] mt-7 h-[70px] border-orange-300 rounded-lg p-2 text-xl outline-none shadow drop-shadow-lg">
+        class="border w-[80%] md:w-[70%] mt-7 h-[50px] border-orange-300 rounded-lg p-2 text-xl outline-none shadow drop-shadow-lg">
         <br>
         <button id="sub"
-            class="border w-[15%] h-10 rounded-lg border-orange-300 bg-gray-100 shadow drop-shadow-lg mt-3">
+            class="border w-[20%] h-10 rounded-lg border-orange-300 bg-gray-100 shadow drop-shadow-lg mt-3">
             Submit
         </button>
     </div>
 
-    `    
-    const unsubscribeReplies = onSnapshot(postRef, (doc) => {
-        const postData = doc.data();
-        if (postData && postData.replies && postData.replies.length > 0) {
-            renderReplies(postData.replies);
-        }
-    });
-    
-    const  renderReplies=(replies) =>{
-        let replyList = "";
-        replies.forEach((reply) => {
-            // Check if reply.timestamp exists before calling toDate()
-            console.log('Reply timestamp:', reply.timestamp);
-            const timeDiff = reply.timestamp ? Math.floor((Date.now() - reply.timestamp.toDate()) / (1000 * 60)) : null;
-            console.log('Time difference:', timeDiff);
-    
-            // Construct the HTML for the reply with updated time
-            replyList += `
+    `
+        const unsubscribeReplies = onSnapshot(postRef, (doc) => {
+            const postData = doc.data();
+            if (postData && postData.replies && postData.replies.length > 0) {
+                renderReplies(postData.replies);
+            }
+        });
+
+        const renderReplies = (replies) => {
+            let replyList = "";
+            replies.forEach((reply) => {
+                // Check if reply.timestamp exists before calling toDate()
+                console.log('Reply timestamp:', reply.timestamp);
+                const timeDiff = reply.timestamp ? Math.floor((Date.now() - reply.timestamp.toDate()) / (1000 * 60)) : null;
+                console.log('Time difference:', timeDiff);
+
+                // Construct the HTML for the reply with updated time
+                replyList += `
                 <div class="w-[100%] h-[200px] mt-3">
-                    <div class="w-[35%] h-[50%] flex justify-around items-center">
+                    <div class="w-[55%] md:w-[30%] h-[50%] flex justify-between md:justify-evenly items-center">
                         <div class="w-[80px] h-[80px] rounded-full shadow drop-shadow-lg">
                             <img class="rounded-full w-[100%] h-[80px]" src=${reply.photoURL} alt="">
                         </div>
                         <div class="w-[50%] h-[80px]">
-                            <p class="text-lg">${reply.displayName}</p>
-                            <p class="mt-1 text-xs">${timeDiff !== null ? 
-                                (timeDiff === 0 ? 'Just now' : 
-                                timeDiff < 60 ? timeDiff + ' min ago' : 
-                                timeDiff < 60 * 24 ? Math.floor(timeDiff / 60) + ' hour' : 
-                                timeDiff < 60 * 24 * 30 ? Math.floor(timeDiff / (60 * 24)) + ' day' : 
-                                timeDiff < 60 * 24 * 365 ? Math.floor(timeDiff / (60 * 24 * 30)) + ' month' : 
-                                Math.floor(timeDiff / (60 * 24 * 365)) + ' year') + 
-                                (timeDiff >= 60 && timeDiff < 60 * 24 ? (timeDiff < 120 ? '' : '') : 
-                                timeDiff >= 60 * 24 && timeDiff < 60 * 24 * 30 ? (timeDiff < 60 * 48 ? '' : '') : 
+                            <p class="text-lg mt-2">${reply.displayName}</p>
+                            <p class="mt-1 text-xs">${timeDiff !== null ?
+                        (timeDiff === 0 ? 'Just now' :
+                            timeDiff < 60 ? timeDiff + ' min ago' :
+                                timeDiff < 60 * 24 ? Math.floor(timeDiff / 60) + ' hour' :
+                                    timeDiff < 60 * 24 * 30 ? Math.floor(timeDiff / (60 * 24)) + ' day' :
+                                        timeDiff < 60 * 24 * 365 ? Math.floor(timeDiff / (60 * 24 * 30)) + ' month' :
+                                            Math.floor(timeDiff / (60 * 24 * 365)) + ' year') +
+                        (timeDiff >= 60 && timeDiff < 60 * 24 ? (timeDiff < 120 ? '' : '') :
+                            timeDiff >= 60 * 24 && timeDiff < 60 * 24 * 30 ? (timeDiff < 60 * 48 ? '' : '') :
                                 timeDiff >= 60 * 24 * 30 && timeDiff < 60 * 24 * 365 ? (timeDiff < 60 * 24 * 60 ? '' : '') : '') : ''}
                             </p>                    </div>
                     </div>
-                    <div class="w-[70%] mt-2 pl-5">
-                        <p class="mt-3">${reply.userReply}</p>
+                    <div class="w-[70%] mt-2 pl-10">
+                        <span class="mt-3 bg-slate-100 rounded-xl p-1">${reply.userReply}</span>
                         <p class="mt-2"><i class="fa-regular fa-heart"></i></p>
                     </div>
                 </div>`;
-        });
-        commentsSection.innerHTML = replyList;
-    }
-    
-} else {
-    console.log("No such document!");
-}
-post.innerHTML = list
-
-
-document.getElementById('sub').addEventListener('click', async () => {
-    let userReply = document.getElementById('forInput').value;
-    if (!userReply) {
-        Toastify({
-            text: "Please enter your reply",
-            duration: 3000,
-            gravity: "top", 
-            close: true 
-        }).showToast();
-    } else {
-        const user2 = auth.currentUser;
-
-console.log(user2)
-const timestamp = new Date();
-        const reply = {
-            userReply,
-            displayName:user2.displayName,
-            photoURL:user2.photoURL,
-            timestamp: timestamp 
-        };
-
-        try {
-            const docSnap = await getDoc(postRef);
-            if (docSnap.exists()) {
-                const existingData = docSnap.data();
-                let updatedReplies = existingData.replies || []; 
-                updatedReplies.push(reply);
-
-                await setDoc(postRef, { replies: updatedReplies }, { merge: true });
-                document.getElementById('forInput').value = "";
-                console.log("Document updated successfully!");
-            } else {
-                console.log("Document does not exist");
-            }
-        } catch (e) {
-            console.error("Error updating document: ", e);
+            });
+            commentsSection.innerHTML = replyList;
         }
+
+    } else {
+        console.log("No such document!");
     }
-});
+    post.innerHTML = list
+
+
+    document.getElementById('sub').addEventListener('click', async () => {
+        let userReply = document.getElementById('forInput').value;
+        if (!userReply) {
+            Toastify({
+                text: "Please enter your reply",
+                duration: 3000,
+                gravity: "top",
+                close: true
+            }).showToast();
+        } else {
+            const user2 = auth.currentUser;
+
+            console.log(user2)
+            const timestamp = new Date();
+            const reply = {
+                userReply,
+                displayName: user2.displayName,
+                photoURL: user2.photoURL,
+                timestamp: timestamp
+            };
+
+            try {
+                const docSnap = await getDoc(postRef);
+                if (docSnap.exists()) {
+                    const existingData = docSnap.data();
+                    let updatedReplies = existingData.replies || [];
+                    updatedReplies.push(reply);
+
+                    await setDoc(postRef, { replies: updatedReplies }, { merge: true });
+                    document.getElementById('forInput').value = "";
+                    console.log("Document updated successfully!");
+                } else {
+                    console.log("Document does not exist");
+                }
+            } catch (e) {
+                console.error("Error updating document: ", e);
+            }
+        }
+    });
 
 
 
@@ -206,20 +206,20 @@ let currentPath = window.location.pathname.split("/").pop();
 
 const load = () => {
 
-  onAuthStateChanged(auth, (user) => {
-  const user1 = auth.currentUser;
-  console.log(user1)
+    onAuthStateChanged(auth, (user) => {
+        const user1 = auth.currentUser;
+        console.log(user1)
 
-    if (user) {
-      if (currentPath !== "userPost.html") {
-        window.location.href = "userPost.html";
-      }
-    } else {
-      if (currentPath !== "index.html" && currentPath !== "index.html") {
-        window.location.href = "index.html";
-      }
-    }
-  });
+        if (user) {
+            if (currentPath !== "userPost.html") {
+                window.location.href = "userPost.html";
+            }
+        } else {
+            if (currentPath !== "index.html" && currentPath !== "index.html") {
+                window.location.href = "index.html";
+            }
+        }
+    });
 };
 load();
 const logOutBtn = () => {
@@ -229,17 +229,17 @@ const logOutBtn = () => {
             console.log("User signed out");
             window.location.reload();
             alert("user logOut")
-            
+
         })
         .catch((error) => {
             console.error("Sign out error:", error);
         });
 
 }
-const homeRed=()=>{
-    window.location.href="index.html"
+const homeRed = () => {
+    window.location.href = "index.html"
     console.log("pk")
-  }
-  home && home.addEventListener("click", homeRed)
+}
+home && home.addEventListener("click", homeRed)
 logOut && logOut.addEventListener("click", logOutBtn)
 
