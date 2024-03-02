@@ -106,7 +106,7 @@ window.location.href="index.html"
     const credential = FacebookAuthProvider.credentialFromError(error);
     
 
-    // ...
+    window.location.href="index.html"
   });
 
 
